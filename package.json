@@ -1,0 +1,58 @@
+{
+  "name": "myapp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demo App",
+  "author": "Osman Aşar",
+  "build": {
+    "appId": "onc"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "wait-on": "^5.2.0",
+    "web-vitals": "^0.2.4"
+  },
+  "devDependencies": {
+    "electron": "^11.0.3",
+    "electron-builder": "^22.9.1"
+  },
+  "scripts": {
+    "react-start": "PORT=8000 react-scripts start",
+    "react-build": "PORT=8000 react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "npm run react-build && electron-builder --publish=always",
+    "build": "npm run react-build && npm run electron-build --win",
+    "build-mac": "npm run react-build && ./node_modules/.bin/electron-packager . osman --platform=darwin --arch=x64",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:8000 && electron .\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
